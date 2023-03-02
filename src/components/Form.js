@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-
+import axios from "axios";
 
 
 function Form(props) {
@@ -10,8 +10,29 @@ function Form(props) {
       }
     function handleSubmit(e) {
         e.preventDefault();
-        props.addTask(name);
+       
+
+
+        axios
+        .post(props.url, {
+         
+          title: name,
+          description: "zadanie1",
+          priority: "1",
+          date:"data",
+          active:"false"
+        })
+
+      props.addTask();
+
+
         setName("");
+
+       
+      
+
+
+
       }
   return (
     <form onSubmit={handleSubmit}>
@@ -29,6 +50,9 @@ function Form(props) {
         value={name}
         onChange={handleChange}
       />
+
+
+
       <button type="submit" className="btn btn__primary btn__lg">
         Add
       </button>
